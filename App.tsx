@@ -1,110 +1,100 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import 'react-native-gesture-handler';
+import React, {useEffect} from 'react';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import LoginFullScreen from './src/LoginFullScreen';
+import SignInCredentials from './src/SignInCredentials';
+import ProfileScreen from './src/ProfileScreen';
+import {StyleSheet} from 'react-native';
+import HomeTab from './src/HomeTab';
+import DetailScreen from './src/DetailScreen';
+import userOnBoardScreen from './src/UserOnBoardScreen';
+import MyProfileDetailScreen from './src/MyProfileDetailScreen';
+import FriendsAndFamilyDetails from './src/FriendsAndFamilyDetails';
+import ChatScreen from './src/ChatScreen';
+import FoodLoginScreen from './src/FoodLoginScreen';
+// import FoodHomeScreen from './src/FoodHomeScreen';
+// import DrawerNavigator from './src/DrawerNavigator';
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  Pressable,
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+const Stack = createNativeStackNavigator();
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-function App(): React.JSX.Element {
+const App = () => {
   return (
-    <View style={styles.mainView}>
-      <View style={styles.secondView}>
-        <View style={styles.tickholder}>
-          <Text style={styles.tick}>✓</Text>
-        </View>
-        <Text style={styles.heading}>Success</Text>
-        <Text style={styles.subHeading}>
-          Your message was sent successfully,{'\n'} please check your mail to
-          confirm.
-        </Text>
-        <Pressable style={styles.button}>
-          <Text style={styles.buttonText}>Continue</Text>
-        </Pressable>
-      </View>
-    </View>
+    <GestureHandlerRootView style={{flex: 1}}>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Login">
+          <Stack.Screen
+            name="Login"
+            component={LoginFullScreen}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Sign in"
+            component={SignInCredentials}
+            options={{title: 'Sign in'}}
+          />
+          {/* <Stack.Screen
+            name="DrawerNavigator"
+            component={DrawerNavigator}
+            options={{headerShown: false}}
+          /> */}
+          <Stack.Screen
+            name="HomeTab"
+            component={HomeTab}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Detail"
+            component={DetailScreen}
+            options={{title: 'chats'}}
+          />
+          <Stack.Screen
+            name="Profile"
+            component={ProfileScreen}
+            options={{title: 'Profile'}}
+          />
+          <Stack.Screen
+            name="OnBoard"
+            component={userOnBoardScreen}
+            options={{title: 'OnBoard'}}
+          />
+          <Stack.Screen
+            name="MyProfileDetailScreen"
+            component={MyProfileDetailScreen}
+            options={{title: 'My profile detail'}}
+          />
+          <Stack.Screen
+            name="FriendsAndFamilyDetails"
+            component={FriendsAndFamilyDetails}
+            options={{title: 'Friends and Family details'}}
+          />
+          <Stack.Screen
+            name="ChatScreen"
+            component={ChatScreen}
+            options={{title: 'Chat Screen'}}
+          />
+          <Stack.Screen
+            name="FoodLoginScreen"
+            component={FoodLoginScreen}
+            options={{title: 'Food Login Screen'}}
+          />
+          {/* <Stack.Screen
+            name="FoodHomeScreen"
+            component={FoodHomeScreen}
+            options={{title: 'Food Home Screen'}}
+          /> */}
+        </Stack.Navigator>
+      </NavigationContainer>
+    </GestureHandlerRootView>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  mainView: {
-    height: '100%',
-    width: '100%',
-    backgroundColor: '#ffe5b4',
+  container: {
+    flex: 1,
     justifyContent: 'center',
-    alignContent: 'center',
     alignItems: 'center',
-  },
-  secondView: {
-    width: '90%',
-    height: '97%',
-    backgroundColor: 'white',
-    borderRadius: 40,
-  },
-  tickholder: {
-    width: 200,
-    height: 200,
-    backgroundColor: '#ffe5b4',
-    alignSelf: 'center',
-    borderRadius: 100,
-    marginTop: 90,
-    justifyContent: 'center',
-    alignContent: 'center',
-    alignItems: 'center',
-  },
-  heading: {
-    fontSize: 50,
-    color: 'black',
-    alignSelf: 'center',
-    fontWeight: '800',
-    marginTop: 30,
-  },
-  subHeading: {
-    fontSize: 17,
-    color: 'grey',
-    alignSelf: 'center',
-    fontWeight: '400',
-    marginTop: 10,
-  },
-  button: {
-    backgroundColor: '#FF4500',
-    padding: 10,
-    borderRadius: 15,
-    height: 50,
-    width: 350,
-    alignItems: 'center',
-    marginLeft: 10,
-    marginTop: 310,
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 16,
-    alignItems: 'center',
-    fontWeight: '800',
-  },
-  tick: {
-    fontSize: 140,
-    color: '#FF4500',
   },
 });
 
